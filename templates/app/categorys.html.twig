@@ -11,15 +11,31 @@
     </style>
 
 
+    <form action="{{ path('app_categorys', { 'id': categorys.id }) }}" method="get">
+        <label for="sort">Sort by price:</label>
+        <select name="sort" id="sort">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <button type="submit">Sort</button>
+    </form>
 
-    <div class="example-wrapper">
-        <h1>Products in {{ category.name }}</h1>
+    <div>
+        <h2>{{ categorys.name }}</h2>
+        <p>Sort by price: {{ sort|capitalize }}</p>
         <ul>
-            {% for product in category.products %}
-                <li>{{ product.name }}</li>
+            {% for product in products %}
+                <li>
+                    <img src="{{ product.pictureUrl }}" alt="{{ product.name }}" width="100">
+                    {{ product.name }} - {{ product.price }} $
+                </li>
+
+
             {% endfor %}
         </ul>
     </div>
+
     <a href="{{ path('app_app') }}">Back to All categorys</a>
+
 
 {% endblock %}

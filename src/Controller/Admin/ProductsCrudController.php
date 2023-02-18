@@ -23,7 +23,7 @@ class ProductsCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('title'),
+            TextField::new('name'),
             TextEditorField::new('description'),
             IntegerField::new('stock'),
             NumberField::new('price'),
