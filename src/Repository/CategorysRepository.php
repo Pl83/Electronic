@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Claviers;
+use App\Entity\Categorys;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Claviers>
+ * @extends ServiceEntityRepository<Categorys>
  *
- * @method Claviers|null find($id, $lockMode = null, $lockVersion = null)
- * @method Claviers|null findOneBy(array $criteria, array $orderBy = null)
- * @method Claviers[]    findAll()
- * @method Claviers[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Categorys|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Categorys|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Categorys[]    findAll()
+ * @method Categorys[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ClaviersRepository extends ServiceEntityRepository
+class CategorysRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Claviers::class);
+        parent::__construct($registry, Categorys::class);
     }
 
-    public function save(Claviers $entity, bool $flush = false): void
+    public function save(Categorys $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ClaviersRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Claviers $entity, bool $flush = false): void
+    public function remove(Categorys $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class ClaviersRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Claviers[] Returns an array of Claviers objects
+//     * @return Categorys[] Returns an array of Categorys objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class ClaviersRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Claviers
+//    public function findOneBySomeField($value): ?Categorys
 //    {
 //        return $this->createQueryBuilder('c')
 //            ->andWhere('c.exampleField = :val')

@@ -13,14 +13,12 @@
 
 
     <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-    <br>
-    <a href="{{ path('app_logout') }}">Logout</a>
+        <ul>
+            {% for category in categorys %}
+                <li><a href="{{ path('app_categorys', {'id': category.id}) }}">{{ category.name }}</a></li>
+                <!--<img src="{{ category.pictureUrl }}" alt="{{ category.name }}" />-->
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/pierr/OneDrive - De Vinci/CDIcours/learning_symfony/electro/src/Controller/AppController.php'|file_link(0) }}">src/Controller/AppController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/pierr/OneDrive - De Vinci/CDIcours/learning_symfony/electro/templates/app/index.html.twig'|file_link(0) }}">templates/app/index.html.twig</a></code></li>
-    </ul>
+            {% endfor %}
+        </ul>
 </div>
 {% endblock %}
