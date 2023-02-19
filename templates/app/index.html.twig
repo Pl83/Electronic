@@ -9,20 +9,14 @@
     .example-wrapper { margin: 1em auto; max-width: 1200px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     .pp{
-        width: 100px;
-        height: 100px;
+        width: 200px;
+        height: auto;
     }
     ul{
         display: flex;
         flex-wrap: wrap;
         list-style: none;
-        gap: 20px;
-    }
-    .bap {
-        width: 200px;
-        height: 200px;
-        margin: 10px;
-        border: 1px solid #ccc;
+        gap: 80px;
     }
     @property --rotate {
         syntax: "<angle>";
@@ -45,6 +39,7 @@
         padding-top: 2rem;
         padding-bottom: 2rem;
         box-sizing: border-box;
+        color: #fff !important;
     }
 
 
@@ -59,19 +54,11 @@
         align-items: center;
         text-align: center;
         display: flex;
+        flex-direction: column;
         font-size: 1.5em;
         color: rgb(88 199 250 / 0%);
         cursor: pointer;
         font-family: cursive;
-    }
-
-    .card:hover {
-        color: rgb(88 199 250 / 100%);
-        transition: color 1s;
-    }
-    .card:hover:before, .card:hover:after {
-        animation: none;
-        opacity: 0;
     }
 
 
@@ -118,36 +105,36 @@
             --rotate: 360deg;
         }
     }
-
     a {
-        color: #212534;
+        color: #fff;
         text-decoration: none;
         font-family: sans-serif;
         font-weight: bold;
         margin-top: 2rem;
     }
+    li{
+        color: #fff;
+    }
 </style>
-
-
     <div>
-        <div class="card">
-            Magic Card
-        </div>
-
-
-        <a href="https://mythrillfiction.com/" target="_blank">Mythrill</a>
+        <h1>Welcome on ELECTRO !!!</h1>
+        <p>Here we sell pc components, please enjoye your trip on our web site.</p>
     </div>
     <div class="example-wrapper">
         <ul>
             {% for category in categorys %}
-                <div class="bap">
-                    <li><a href="{{ path('app_categorys', {'id': category.id}) }}">{{ category.name }}</a></li>
+                <a href="{{ path('app_categorys', {'id': category.id}) }}">
+                <div class="card">
+                    <li>{{ category.name }}</li>
+                    <br>
                     <img class="pp" src="{{ app.request.basepath }}/uploads/categorys/{{ category.pictureUrl }}" alt="{{ category.name }}" />
                 </div>
+                </a>
             {% endfor %}
         </ul>
         <a href="{{ path('app_logout') }}">LogOut</a>
 </div>
+
 
 
 {% endblock %}

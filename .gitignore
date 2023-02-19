@@ -11,7 +11,7 @@
 
 
 public/uploads/products
-public/uploads/products/.gitkeep
+!public/uploads/products/.gitkeep
 
 public/uploads/categorys
-public/uploads/categorys/.gitkeep
+!public/uploads/categorys/.gitkeep
