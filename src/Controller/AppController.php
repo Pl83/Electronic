@@ -27,10 +27,8 @@ class AppController extends AbstractController
       throw $this->createNotFoundException('Categorys not found');
     }
 
-    // get the sort option from the request
     $sort = $request->query->get('sort', 'asc');
 
-    // get the products for the category and sort them by price
     $products = $productsRepository->findBy(
       ['category' => $categorys],
       ['price' => $sort === 'desc' ? 'desc' : 'asc']
@@ -41,6 +39,20 @@ class AppController extends AbstractController
       'products' => $products,
       'sort' => $sort
     ]);
+  }
+
+  #[Route('/products/{id}', name: 'app_products')]
+  public function products($id, ProductsRepository $productsRepository): Response
+  {
+    $products = $productsRepository->find($id);
+    if(!$products){
+      throw $this->createNotFoundException('Products not found');
+    }
+
+    return $this->render('app/products.html.twig', [
+      'products' => $products,
+    ]);
+
   }
 
 }

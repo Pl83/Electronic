@@ -1,0 +1,51 @@
+
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Hello AppController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        .here{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .main{
+            width: 170px;
+            height: auto;
+            border: 1px solid black;
+            padding: 10px;
+            position: relative;
+        }
+        .pp{
+            width: 100px;
+            height: 100px;
+
+        }
+    </style>
+
+
+
+        <h2>{{ products.name }}</h2>
+        <div>
+            <img class="pp" src="{{ app.request.basepath }}/uploads/products/{{ products.pictureUrl }}" alt="{{ products.name }}" />
+            <div>
+                <h3>Cost : {{ products.price }} $</h3>
+                <p>{{ products.description }}
+                <p>{{ products.stock }} left in stocks</p>
+                {% if products.stock < 30 %}
+                    <span style="color: red">Low in stock!</span>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <a href="{{ path('app_categorys', {'id': products.category.id}) }}">Back to all {{ products.category }}</a>
+
+
+
+{% endblock %}
