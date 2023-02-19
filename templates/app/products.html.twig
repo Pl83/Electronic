@@ -1,7 +1,4 @@
-
 {% extends 'base.html.twig' %}
-
-
 
 {% block title %}Hello AppController!{% endblock %}
 
@@ -28,24 +25,54 @@
         }
     </style>
 
-
-
-        <h2>{{ products.name }}</h2>
+    <h2>{{ products.name }}</h2>
+    <div class="theone">
+        <img class="pp" src="{{ app.request.basepath }}/uploads/products/{{ products.pictureUrl }}" alt="{{ products.name }}" />
         <div>
-            <img class="pp" src="{{ app.request.basepath }}/uploads/products/{{ products.pictureUrl }}" alt="{{ products.name }}" />
-            <div>
-                <h3>Cost : {{ products.price }} $</h3>
-                <p>{{ products.description }}
-                <p>{{ products.stock }} left in stocks</p>
-                {% if products.stock < 30 %}
-                    <span style="color: red">Low in stock!</span>
-                {% endif %}
-            </div>
+            <h3>Cost : {{ products.price }} $</h3>
+            <p>{{ products.description }}
+            <p>Id: {{ products.id }}</p>
+            <p>{{ products.stock }} left in stocks</p>
+            {% if products.stock < 30 %}
+                <span style="color: red">Low in stock!</span>
+            {% endif %}
         </div>
+    </div>
 
+    <div>
+        <h3>Other products</h3>
+        <div class="here">
+            {% set productsArray = products.category.products.toArray() %}
+            {% set shuffledProducts = shuffle(productsArray)|slice(0, 5) %}
+            <div id="ici"></div>
+            {% for product in shuffledProducts %}
+                <div class="main" data-product-id="{{ product.id }}">
+                    <img class="pp" src="{{ app.request.basepath }}/uploads/products/{{ product.pictureUrl }}" alt="{{ product.name }}" />
+                    <div>
+                        <h4>{{ product.name }}</h4>
+                        <p>{{ product.price }} $</p>
+                        <a href="{{ path('app_products', {'id': product.id}) }}">See more</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
-        <a href="{{ path('app_categorys', {'id': products.category.id}) }}">Back to all {{ products.category }}</a>
+    <a href="{{ path('app_categorys', {'id': products.category.id}) }}">Back to all {{ products.category }}</a>
 
+    <script>
+        const products = document.querySelectorAll('.main');
+        const productIds = [];
+        products.forEach(product => productIds.push(product.dataset.productId));
+        document.getElementById('ici').innerHTML = productIds.join(', ');
 
+        const productId = {{ products.id }};
+        //console.log('Product ID:', productId);
+        const productIdsArray = productIds.filter(id => id != productId);
+        //console.log('Product IDs:', productIdsArray);
+        const productIdsString = productIdsArray.join(', ');
+        //console.log('Product IDs:', productIdsString);
+        document.getElementById('ici').innerHTML = productIdsString;
 
+    </script>
 {% endblock %}
