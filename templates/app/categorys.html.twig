@@ -20,14 +20,20 @@
             padding: 10px;
             position: relative;
         }
-        .pp{
-            width: 50px;
-            height: 50px;
 
+        .your{
+            padding-top: 120px;
+        }
+        .that{
+            text-align: center;
+            font-size: larger;
+        }
+        .that h2{
+            font-size: 5em;
         }
     </style>
 
-
+    <div class="your">
     <form action="{{ path('app_categorys', { 'id': categorys.id }) }}" method="get">
         <label for="sort">Sort by price:</label>
         <select name="sort" id="sort">
@@ -37,22 +43,27 @@
         <button type="submit">Sort</button>
     </form>
 
-    <div>
-        <h2>{{ categorys.name }}</h2>
-        <p>Sort by price: {{ sort|capitalize }}</p>
-        <ul class="here">
-            {% for product in products %}
-                <div class="main">
-                    <img class="pp" src="{{ app.request.basepath }}/uploads/products/{{ product.pictureUrl }}" alt="{{ product.name }}" />
-                    <a href="{{ path('app_products', {'id': product.id}) }}">
-                            {{ product.name }} - {{ product.price }} $
-                    </a>
-                </div>
-                <br>
 
-            {% endfor %}
-        </ul>
+        <div class="that">
+            <h2>{{ categorys.name }}</h2>
+            <p>Sort by price: {{ sort|capitalize }}</p>
+        </div>
+        <div class="here">
+            <ul>
+                {% for product in products %}
+                    <a href="{{ path('app_products', {'id': product.id}) }}">
+                        <div class="card">
+                            <li>{{ product.name }} - {{ product.price }} $</li>
+                            <br>
+                            <img class="pp" src="{{ app.request.basepath }}/uploads/products/{{ product.pictureUrl }}" alt="{{ product.name }}" />
+                        </div>
+                    </a>
+                {% endfor %}
+            </ul>
+
+        </div>
     </div>
+
 
     <a href="{{ path('app_app') }}">Back to All categorys</a>
 

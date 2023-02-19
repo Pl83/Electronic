@@ -25,13 +25,12 @@
         }
     </style>
 
-    <h2>{{ products.name }}</h2>
-    <div class="theone">
+    <h2 style="padding-top: 90px">{{ products.name }}</h2>
+    <div class="card">
         <img class="pp" src="{{ app.request.basepath }}/uploads/products/{{ products.pictureUrl }}" alt="{{ products.name }}" />
         <div>
             <h3>Cost : {{ products.price }} $</h3>
             <p>{{ products.description }}
-            <p>Id: {{ products.id }}</p>
             <p>{{ products.stock }} left in stocks</p>
             {% if products.stock < 30 %}
                 <span style="color: red">Low in stock!</span>
@@ -39,14 +38,14 @@
         </div>
     </div>
 
-    <div>
+    <div style="padding-top: 80px">
         <h3>Other products</h3>
         <div class="here">
             {% set productsArray = products.category.products.toArray() %}
             {% set shuffledProducts = shuffle(productsArray)|slice(0, 5) %}
             <div id="ici"></div>
             {% for product in shuffledProducts %}
-                <div class="main" data-product-id="{{ product.id }}">
+                <div class="main card" data-product-id="{{ product.id }}">
                     <img class="pp" src="{{ app.request.basepath }}/uploads/products/{{ product.pictureUrl }}" alt="{{ product.name }}" />
                     <div>
                         <h4>{{ product.name }}</h4>
