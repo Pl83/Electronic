@@ -60,19 +60,4 @@
 
     <a href="{{ path('app_categorys', {'id': products.category.id}) }}">Back to all {{ products.category }}</a>
 
-    <script>
-        const products = document.querySelectorAll('.main');
-        const productIds = [];
-        products.forEach(product => productIds.push(product.dataset.productId));
-        document.getElementById('ici').innerHTML = productIds.join(', ');
-
-        const productId = {{ products.id }};
-        //console.log('Product ID:', productId);
-        const productIdsArray = productIds.filter(id => id != productId);
-        //console.log('Product IDs:', productIdsArray);
-        const productIdsString = productIdsArray.join(', ');
-        //console.log('Product IDs:', productIdsString);
-        document.getElementById('ici').innerHTML = productIdsString;
-
-    </script>
 {% endblock %}
